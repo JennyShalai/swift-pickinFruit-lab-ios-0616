@@ -23,20 +23,20 @@ class ViewControllerSpec: QuickSpec {
             
             it("should say 'TRY AGAIN' when you do not get three of the same fruit across the spinner") {
                 
-                let pickerView = tester.waitForViewWithAccessibilityLabel(Constants.FRUIT_PICKER) as! UIPickerView
-                let appDelegate = UIApplication.sharedApplication().delegate
+                let pickerView = tester.waitForView(withAccessibilityLabel: Constants.FRUIT_PICKER) as! UIPickerView
+                let appDelegate = UIApplication.shared.delegate
                 let vc = appDelegate!.window!?.rootViewController as! ViewController
                 
                 vc.fruitsArray = (0..<26).map({String(UnicodeScalar("a".unicodeScalars.first!.value + $0))})
                 
                 pickerView.reloadAllComponents()
                 
-                tester.waitForTimeInterval(3.0)
+                tester.wait(forTimeInterval: 3.0)
                 
-                tester.waitForTappableViewWithAccessibilityLabel(Constants.SPIN_BUTTON)
-                tester.tapViewWithAccessibilityLabel(Constants.SPIN_BUTTON)
+                tester.waitForTappableView(withAccessibilityLabel: Constants.SPIN_BUTTON)
+                tester.tapView(withAccessibilityLabel: Constants.SPIN_BUTTON)
                 
-                tester.waitForAnimationsToFinishWithTimeout(3.0)
+                tester.waitForAnimationsToFinish(withTimeout: 3.0)
                 
                 expect(vc.resultLabel.text).to(equal("TRY AGAIN"))
 
@@ -44,20 +44,20 @@ class ViewControllerSpec: QuickSpec {
             
             it("should say 'WINNER!' when you do get three of the same fruit across the spinner") {
                 
-                let pickerView = tester.waitForViewWithAccessibilityLabel(Constants.FRUIT_PICKER) as! UIPickerView
-                let appDelegate = UIApplication.sharedApplication().delegate
+                let pickerView = tester.waitForView(withAccessibilityLabel: Constants.FRUIT_PICKER) as! UIPickerView
+                let appDelegate = UIApplication.shared.delegate
                 let vc = appDelegate!.window!?.rootViewController as! ViewController
                 
                 vc.fruitsArray = ["a"]
                 
                 pickerView.reloadAllComponents()
                 
-                tester.waitForTimeInterval(3.0)
+                tester.wait(forTimeInterval: 3.0)
                 
-                tester.waitForTappableViewWithAccessibilityLabel(Constants.SPIN_BUTTON)
-                tester.tapViewWithAccessibilityLabel(Constants.SPIN_BUTTON)
+                tester.waitForTappableView(withAccessibilityLabel: Constants.SPIN_BUTTON)
+                tester.tapView(withAccessibilityLabel: Constants.SPIN_BUTTON)
                 
-                tester.waitForAnimationsToFinishWithTimeout(3.0)
+                tester.waitForAnimationsToFinish(withTimeout: 3.0)
                 
                 expect(vc.resultLabel.text).to(equal("WINNER!"))
                 

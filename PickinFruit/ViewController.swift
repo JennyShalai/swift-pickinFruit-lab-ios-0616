@@ -28,24 +28,24 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         
     }
     
-    @IBAction func spinButtonTapped(sender: UIButton) {
+    @IBAction func spinButtonTapped(_ sender: UIButton) {
         self.pickFruit()
-        if (Int(self.pickerView.selectedRowInComponent(0).description)! % self.fruitsArray.count) == (Int(self.pickerView.selectedRowInComponent(1).description)! % self.fruitsArray.count) && (Int(self.pickerView.selectedRowInComponent(1).description)! % self.fruitsArray.count) == (Int(self.pickerView.selectedRowInComponent(2).description)! % self.fruitsArray.count) {
+        if (Int(self.pickerView.selectedRow(inComponent: 0).description)! % self.fruitsArray.count) == (Int(self.pickerView.selectedRow(inComponent: 1).description)! % self.fruitsArray.count) && (Int(self.pickerView.selectedRow(inComponent: 1).description)! % self.fruitsArray.count) == (Int(self.pickerView.selectedRow(inComponent: 2).description)! % self.fruitsArray.count) {
             self.resultLabel.text = "WINNER!"
         } else {
             self.resultLabel.text = "TRY AGAIN"
         }
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 3
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 100
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return self.fruitsArray[row % self.fruitsArray.count]
     }
     
@@ -70,7 +70,7 @@ extension ViewController {
     func configureButton()
     {
         self.spinButton.layer.cornerRadius = 0.5 * self.spinButton.bounds.size.width
-        self.spinButton.layer.borderColor = UIColor.whiteColor().CGColor
+        self.spinButton.layer.borderColor = UIColor.white.cgColor
         self.spinButton.layer.borderWidth = 4.0
         self.spinButton.clipsToBounds = true
     }
